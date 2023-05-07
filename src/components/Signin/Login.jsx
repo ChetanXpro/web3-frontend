@@ -85,12 +85,20 @@ const Login = () => {
 
     const message = "Sign this message to log in to our app";
 
-    const currentAccount = await provider.getSigner().getAddress();
+    const accounts = await ethereum.request({
+      method: "eth_requestAccounts",
+    });
 
-    const signature = await provider.getSigner().signMessage(message);
+    console.log(accounts);
+
+    // const currentAccount = await provider.getSigner([accounts[0]]).getAddress();
+
+    const signature = await provider
+      .getSigner(accounts[0])
+      .signMessage(message);
 
     const payload = {
-      address: currentAccount.toLocaleLowerCase(),
+      address: accounts[0].toLocaleLowerCase(),
       signature: signature,
       message,
     };
