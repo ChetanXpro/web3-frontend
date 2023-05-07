@@ -24,9 +24,21 @@ import {
 import { CloudUploadOutlined, SearchOutlined } from "@ant-design/icons";
 
 import UploadedFiles from "../Upload/UploadedFiles";
-import formatBytes from "../../../../server/config/formateByte";
+// import formatBytes from "../../../../server/config/formateByte";
 
 const UploadPublicNotes = () => {
+  const formatBytes = (bytes, decimals = 2) => {
+    if (!+bytes) return "0 Bytes";
+
+    const k = 1024;
+    const dm = decimals < 0 ? 0 : decimals;
+    const sizes = ["Bytes", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB"];
+
+    const i = Math.floor(Math.log(bytes) / Math.log(k));
+
+    return `${parseFloat((bytes / Math.pow(k, i)).toFixed(dm))} ${sizes[i]}`;
+  };
+
   const [files, setFiles] = useState(null);
   const [fileData, setFileData] = useState([]);
   const [uploadLoading, setUploadLoading] = useState(false);
@@ -294,5 +306,5 @@ const UploadPublicNotes = () => {
     </div>
   );
 };
-("pending appoval");
+
 export default UploadPublicNotes;
