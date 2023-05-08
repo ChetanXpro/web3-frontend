@@ -2,9 +2,9 @@ import axios from "axios";
 
 // const API_BASE_URL = "http://provider.palmito.duckdns.org:31378";
 
-// const API_BASE_URL = "https://web3-notes.live";
+const API_BASE_URL = "https://web3-notes.live";
 
-const API_BASE_URL = "http://localhost:5000";
+// const API_BASE_URL = "http://localhost:5000";
 
 export const apiInstance = axios.create({
   baseURL: API_BASE_URL,
